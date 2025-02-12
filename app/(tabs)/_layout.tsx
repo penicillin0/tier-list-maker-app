@@ -1,63 +1,56 @@
-import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
-import { View, Platform } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import React from "react";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { Link, Tabs } from "expo-router";
+import { Pressable } from "react-native";
+
+import Colors from "@/constants/Colors";
+
+// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
+function TabBarIcon(props: {
+  name: React.ComponentProps<typeof FontAwesome>["name"];
+  color: string;
+}) {
+  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+}
 
 export default function TabLayout() {
   return (
-    <View style={{ flex: 1 }}>
-      <StatusBar style="light" />
-      <LinearGradient
-        colors={['#1a1a1a', '#2d2d2d', '#3a3a3a', '#2d2d2d', '#1a1a1a']}
-        style={{
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: Colors.light.tint,
+        // Disable the static render of the header on web
+        // to prevent a hydration error in React Navigation v6.
+        headerShown: false,
+      }}
+    >
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: "Tab One",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerRight: () => (
+            <Link href="/modal" asChild>
+              <Pressable>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="info-circle"
+                    size={25}
+                    color={Colors["light"].text}
+                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
         }}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0.8 }}
       />
-      <Tabs
-        screenOptions={{
-          headerShown: false,
-          tabBarStyle: {
-            backgroundColor: 'rgba(26, 26, 26, 0.95)',
-            borderTopColor: '#333',
-          },
-          tabBarActiveTintColor: '#fff',
-          tabBarInactiveTintColor: '#888',
-        }}>
-        <Tabs.Screen
-          name="index"
-          options={{
-            title: 'ティア表',
-            tabBarIcon: ({ size, color }) => (
-              <Ionicons name="grid" size={size} color={color} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="history"
-          options={{
-            title: '履歴',
-            tabBarIcon: ({ size, color }) => (
-              <Ionicons name="time" size={size} color={color} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="settings"
-          options={{
-            title: '設定',
-            tabBarIcon: ({ size, color }) => (
-              <Ionicons name="settings-outline" size={size} color={color} />
-            ),
-          }}
-        />
-      </Tabs>
-    </View>
+      <Tabs.Screen
+        name="two"
+        options={{
+          title: "Tab Two",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+    </Tabs>
   );
 }
