@@ -1,36 +1,40 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 import { ExternalLink } from "./ExternalLink";
-
-import Colors from "@/constants/Colors";
 
 export default function EditScreenInfo({ path }: { path: string }) {
   return (
     <View>
-      <View style={styles.getStartedContainer}>
-        <Text style={styles.getStartedText}>
+      <View style={{ alignItems: "center", marginHorizontal: 50 }}>
+        <Text style={{ fontSize: 17, lineHeight: 24, textAlign: "center" }}>
           Open up the code for this screen:
         </Text>
 
         <View
-          style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
+          style={{
+            borderRadius: 3,
+            paddingHorizontal: 4,
+            marginVertical: 7,
+          }}
         >
           <Text>{path}</Text>
         </View>
 
-        <Text style={styles.getStartedText}>
+        <Text style={{ fontSize: 17, lineHeight: 24, textAlign: "center" }}>
           Change any of the text, save the file, and your app will automatically
           update.
         </Text>
       </View>
 
-      <View style={styles.helpContainer}>
+      <View
+        style={{ marginTop: 15, marginHorizontal: 20, alignItems: "center" }}
+      >
         <ExternalLink
-          style={styles.helpLink}
+          style={{ paddingVertical: 15 }}
           href="https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet"
         >
-          <Text style={styles.helpLinkText}>
+          <Text style={{ textAlign: "center" }}>
             Tap here if your app doesn't automatically update after making
             changes
           </Text>
@@ -39,33 +43,3 @@ export default function EditScreenInfo({ path }: { path: string }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  getStartedContainer: {
-    alignItems: "center",
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightContainer: {
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    lineHeight: 24,
-    textAlign: "center",
-  },
-  helpContainer: {
-    marginTop: 15,
-    marginHorizontal: 20,
-    alignItems: "center",
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    textAlign: "center",
-  },
-});
