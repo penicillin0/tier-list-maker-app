@@ -1,8 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-import { ExternalLink } from "./ExternalLink";
-
 export default function EditScreenInfo({ path }: { path: string }) {
   return (
     <View>
@@ -29,17 +27,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
 
       <View
         style={{ marginTop: 15, marginHorizontal: 20, alignItems: "center" }}
-      >
-        <ExternalLink
-          style={{ paddingVertical: 15 }}
-          href="https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet"
-        >
-          <Text style={{ textAlign: "center" }}>
-            Tap here if your app doesn't automatically update after making
-            changes
-          </Text>
-        </ExternalLink>
-      </View>
+      ></View>
     </View>
   );
 }

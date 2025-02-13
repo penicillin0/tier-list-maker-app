@@ -1,0 +1,14 @@
+## Technology
+
+- TypeScript では interface ではなく type を使ってください
+- スタイルは、StyleSheet.createを使わずに、各コンポーネントのstyleプロパティに直接オブジェクトリテラルで記述します
+  * 例
+  ```hoge.tsx
+  <View
+    style={{
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+  ```
